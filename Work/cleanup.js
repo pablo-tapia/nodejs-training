@@ -147,8 +147,8 @@ let organizationParser = async (json) => {
                for (let item of partialOrganization['positions']) {
                   let temporal = {};
                   for (let attributes in item) {
-                     if (item[attributes].hasOwnProperty('atts')) {
-                        temporal[attributes] = item[attributes];
+                     if (item[attributes].hasOwnProperty('atts') || Array.isArray(item[attributes]) || item[attributes].hasOwnProperty('values')) {
+                        temporal[attributes] = item[attributes].hasOwnProperty('values') ? item[attributes]['values'] : item[attributes];
                         continue;
                      } // end if
                      temporal[attributes] = item[attributes]['value'];
