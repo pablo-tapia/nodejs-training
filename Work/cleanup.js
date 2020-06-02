@@ -165,61 +165,61 @@ let organizationParser = async (json) => {
 }
 
 let jsonObject = {
-   "rid": "35xwq",
+   "rid": "29fc7",
    "entity": {
-      "rid": "35xwq",
+      "rid": "29fc7",
       "type": "OrganizationType",
-      "AlfrescoNodeRef": "workspace://SpacesStore/3e39531d-b1e7-4aeb-9584-7c4b1dc36636",
+      "AlfrescoNodeRef": "workspace://SpacesStore/0a2405b5-de98-43b0-9d68-efbd7cd2b9ad",
       "triples": [{
-         "subject": "http://ixxus.com/model/source-id#workspace://SpacesStore/3e39531d-b1e7-4aeb-9584-7c4b1dc36636",
+         "subject": "http://ixxus.com/model/source-id#workspace://SpacesStore/0a2405b5-de98-43b0-9d68-efbd7cd2b9ad",
          "predicate": "http://taxnotes.com/model/entities/markedForDeletion",
          "object": {
             "datatype": "string",
             "value": "false"
          }
       }],
-      "catchAll": "<tdcompany xmlns:taf=\"http://taxnotes.com/files#\" xmlns:ta=\"http://www.ixxus.co.uk/model/ta-cms/1.0\" xmlns:tap=\"http://www.ixxus.co.uk/model/ta-pubpipeline/1.0\" xmlns:tar=\"http://www.ixxus.co.uk/model/ta-resolver/1.0\" xmlns:app=\"http://www.alfresco.org/model/application/1.0\" xmlns:cm=\"http://www.alfresco.org/model/content/1.0\" xmlns:sys=\"http://www.alfresco.org/model/system/1.0\" xmlns:tan=\"http://www.taxnotes.com/model/ta-cms/1.0\" xmlns:td=\"http://www.taxnotes.com/model/tax-directory\">\n  <pub_code>CTM</pub_code>\n  <co_code>378086</co_code>\n  <br_code>0000</br_code>\n  <print_ordr>0</print_ordr>\n  <co_name>Ohio National Financial Services</co_name>\n</tdcompany>",
+      "catchAll": "<tdcompany xmlns:taf=\"http://taxnotes.com/files#\" xmlns:ta=\"http://www.ixxus.co.uk/model/ta-cms/1.0\" xmlns:tap=\"http://www.ixxus.co.uk/model/ta-pubpipeline/1.0\" xmlns:tar=\"http://www.ixxus.co.uk/model/ta-resolver/1.0\" xmlns:app=\"http://www.alfresco.org/model/application/1.0\" xmlns:cm=\"http://www.alfresco.org/model/content/1.0\" xmlns:sys=\"http://www.alfresco.org/model/system/1.0\" xmlns:tan=\"http://www.taxnotes.com/model/ta-cms/1.0\" xmlns:td=\"http://www.taxnotes.com/model/tax-directory\">\n  <opt_num_01>8180E</opt_num_01>\n  <pub_code>GOV</pub_code>\n  <co_code>365905</co_code>\n  <br_code>0000</br_code>\n  <print_ordr>0</print_ordr>\n  <sect_fathr>8180</sect_fathr>\n  <co_name>Bank of France</co_name>\n</tdcompany>",
       "addresses": [{
          "atts": {
-            "iri": "http://taxnotes.com/property/iri/a246baa5-e4f1-4a31-900c-708805bc08b9"
+            "iri": "http://taxnotes.com/property/iri/d1e0aba8-23a0-4733-9a4a-5974a70f196e"
          },
-         "ta_street": ["One Financial Way"],
-         "ta_city": "Cincinnati",
-         "ta_state": "OH",
-         "ta_postalCode": "45242"
+         "ta_street": ["31 rue Croix des Petits Champs"],
+         "ta_city": "Paris",
+         "ta_postalCode": "75001",
+         "ta_country": "France"
       }],
       "positions": [{
          "atts": {
-            "iri": "http://taxnotes.com/property/iri/7069a4c8-2586-48df-9016-535f74f7b1af"
+            "iri": "http://taxnotes.com/property/iri/17f368c0-8cb2-4c52-abaa-13831ce6a581"
          },
          "ta_person": {
             "atts": {
-               "iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/bc988b73-8ddc-446b-a57b-ca6398564f80"
+               "iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/3e88fe1b-6f7d-47c6-86f9-a7283d294df2"
             },
-            "value": "Coppola, Rocky"
+            "value": "de Galhau, François Villeroy"
          },
          "ta_positionTitle": {
-            "value": "Senior Vice President & Chief Financial Officer"
+            "value": "Governor"
          },
          "td_positionTitleAbbrev": {
-            "value": "SVP & CFO"
+            "value": "Governor"
          },
          "ta_phones": {
             "values": [{
                "atts": {
-                  "iri": "http://taxnotes.com/property/iri/7ced4714-5f28-4c03-9d9b-d16c933e2ce9"
+                  "iri": "http://taxnotes.com/property/iri/622fca6c-962f-44e2-87be-0814d8d22a98"
                },
-               "value": "(513) 794-6100"
+               "value": "(33-1) 42-92-39-08"
             }]
          },
          "ta_address": [{
             "atts": {
-               "iri": "http://taxnotes.com/property/iri/3af9dc5c-c2d9-4fa5-86fe-f959909b4dbf"
+               "iri": "http://taxnotes.com/property/iri/603fb84e-300a-4925-8a23-6ccceedd667a"
             },
-            "ta_street": ["One Financial Way"],
-            "ta_city": "Cincinnati",
-            "ta_state": "OH",
-            "ta_postalCode": "45242"
+            "ta_street": ["31 rue Croix des Petits Champs"],
+            "ta_city": "Paris",
+            "ta_postalCode": "75001",
+            "ta_country": "France"
          }],
          "ta_showOnWebInfoTab": {
             "value": "true"
@@ -227,117 +227,90 @@ let jsonObject = {
       }],
       "properties": {
          "cm_modified": {
-            "value": "2020-05-15T13:50:05Z"
+            "value": "2020-01-30T22:02:22Z"
          },
          "cm_created": {
-            "value": "2018-06-27T00:00:00Z"
+            "value": "2019-04-29T16:20:55Z"
          },
          "cm_name": {
-            "value": "Ohio National Financial Services"
+            "value": "France, Bank of France"
          },
          "ta_displayName": {
-            "value": "Ohio National Financial Services"
+            "value": "Bank of France"
          },
          "cm_title": {
             "atts": {
                "rich-text": "true"
             },
-            "rich-text-value": "<p>Ohio National Financial Services</p>"
+            "rich-text-value": "<p>Bank of France</p>"
+         },
+         "cm_creator": {
+            "value": "jaugst"
          },
          "cm_modifier": {
-            "value": "demianh"
+            "value": "zacharya"
          },
          "cm_description": {
-            "value": "OFFICIAL"
+            "value": "Official for Banque de France"
          },
          "td_shortName": {
-            "value": "Ohio National Financial Services"
+            "value": "Bank of France"
          },
          "ta_websites": {
             "values": [{
                "atts": {
-                  "iri": "http://taxnotes.com/property/iri/d88f510e-a9ed-417b-8b2c-da0bdc5b0a3e",
-                  "label": "Main website (this is a label)"
+                  "iri": "http://taxnotes.com/property/iri/47d3c119-9c39-4971-afa3-8c4184a27451"
                },
-               "value": "https://www.ohionational.com"
+               "value": "https://www.banque-france.fr/"
             }]
          },
          "ta_phones": {
             "values": [{
                "atts": {
-                  "type": "Toll-Free",
-                  "label": "For Quotes (example of a label)",
-                  "iri": "workspace://SpacesStore/d1e3c17b-8224-42e5-9413-e4e508ec49b1"
+                  "iri": "http://taxnotes.com/property/iri/e2fee372-fe66-4469-892c-0d18f08e6993"
                },
-               "value": "301-123-4567"
+               "value": "(33-1) 42-92-42-92"
             }]
          },
          "ta_emails": {
             "values": [{
                "atts": {
-                  "type": "Business (example of a type)",
-                  "label": "For inquries (example of a label)",
-                  "iri": "workspace://SpacesStore/e00fd33b-5a0d-4af4-b4c0-2caf8fa8fc40"
+                  "iri": "http://taxnotes.com/property/iri/83a294bf-93b7-47fd-8532-c9f19a711e8f"
                },
-               "value": "pablo@45rpm.com"
+               "value": "infos@banque-france.fr"
             }]
          },
          "ta_faxes": {
             "values": [{
                "atts": {
-                  "label": "For requests",
-                  "iri": "workspace://SpacesStore/4ba2823c-4e9f-4b96-b12d-4ddd4fbcc20a"
+                  "iri": "http://taxnotes.com/property/iri/e2490e34-3618-4659-a0ad-717c3178e1c7"
                },
-               "value": "301-945-1234"
+               "value": "(33-1) 42-92-39-40"
             }]
-         },
-         "ta_orgEmployeesLow": {
-            "value": "1300"
-         },
-         "ta_orgEmployeesHigh": {
-            "value": "1300"
-         },
-         "ta_sicClass": {
-            "value": "(6311) Life Insurance"
-         },
-         "ta_orgFYEnd": {
-            "value": "12/31/2018"
-         },
-         "ta_assets": {
-            "value": "39180000"
          },
          "ta_orgType": {
             "values": [{
-               "value": "Mutual company"
+               "value": "Government agency"
             }, {
-               "value": "Fortune 1000"
+               "value": "Financial institution"
             }]
          },
          "ta_jurisdictions": {
             "values": [{
-               "value": "Unassigned Jurisdiction"
+               "value": "France"
             }]
          },
-         "ta_annualRevenue": {
-            "value": "2390000"
+         "ta_nameVariants": {
+            "values": [{
+               "value": "Banque de France"
+            }, {
+               "value": "Bank of France"
+            }]
          },
-         "ta_explanatory": {
-            "atts": {
-               "rich-text": "true"
-            },
-            "rich-text-value": "<p>This is an example of an explanation</p>"
-         },
-         "ta_orgDescription": {
-            "atts": {
-               "rich-text": "true"
-            },
-            "rich-text-value": "<p>This is an example of an org description</p>"
-         },
-         "td_background": {
-            "atts": {
-               "rich-text": "true"
-            },
-            "rich-text-value": "<p>This is an example of an org background</p>"
+         "ta_otherIris": {
+            "values": [{
+               "value": "https://en.wikipedia.org/wiki/Bank_of_France"
+            }]
          },
          "ta_productType": {
             "values": [{
@@ -346,7 +319,7 @@ let jsonObject = {
          },
          "ta_drupalProductSection": {
             "values": [{
-               "value": "Businesses"
+               "value": "Government"
             }]
          },
          "ta_suppressOnWeb": {

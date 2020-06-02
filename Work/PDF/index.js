@@ -30,92 +30,149 @@ let createPdfFrom = async (body) => {
     try {
 		return await pdf.createOrganizationPDF(cover, survey);
 	} catch (error) {
-		throw { 'code': 500, 'message': `Service error. ${error.message}` };
-	}
+		console.log(error);
+		throw { 'code': 500, 'message': `Service error. ${error.message}.` };
+	} // end try - catch
 };
 
 let surveyObject = {
 	"coverText": null,
 	"survey": {
-		"contactName": "Pablo Tapia",
-		"contactMethod": "email",
-		"contactEmail": "pablo@45rpm.co",
-		"contactFax": "(555) 555-5555",
-		"notes": "Example notes Example notes Example notes Example notes Example notes Example notes Example notes",
+		"contactName": null,
+		"contactEmail": "email",
+		"contactFax": "fax",
+		"notes": null,
 		"org": {
-			"rid": "35xwq",
-			"organization_name": "Ohio National Financial Services",
+			"rid": "g",
+			"organization_name": "Campbell Soup Co.",
 			"addresses": [{
 				"atts": {
-					"iri": "http://taxnotes.com/property/iri/a246baa5-e4f1-4a31-900c-708805bc08b9"
+					"iri": "http://taxnotes.com/property/iri/bb93b1bb-406e-400d-95f8-5f7c1207a2ad"
 				},
-				"ta_street": ["One Financial Way"],
-				"ta_city": "Cincinnati",
-				"ta_state": "OH",
-				"ta_postalCode": "45242"
+				"ta_street": ["1 Campbell Pl."],
+				"ta_city": null,
+				"ta_state": "NJ",
+				"ta_postalCode": "08103-1799"
 			}],
 			"other_information": {
-				"number_of_employees": "1300",
-				"SIC_classification": "(6311) Life Insurance",
-				"fiscal_year_end": "12/31/2018",
-				"assets": "39180000",
-				"annual_revenue": "2390000",
-				"organization_description": "<p>This is an example of an org description</p>",
-				"organization_background": "<p>This is an example of an org background</p>"
+				"number_of_employees": "23000",
+				"SIC_classification": "(2032) Canned Specialties",
+				"fiscal_year_end": "7/29/2018",
+				"assets": "14530000000",
+				"annual_revenue": "8690000000"
 			},
 			"phones": [{
 				"atts": {
-					"type": "Toll-Free",
-					"label": "For Quotes (example of a label)",
-					"iri": "workspace://SpacesStore/d1e3c17b-8224-42e5-9413-e4e508ec49b1"
+					"iri": "http://taxnotes.com/property/iri/5cebbb0c-d688-4a98-89ef-a883d2ce7233",
+					"type": "Toll-Free"
 				},
-				"value": "301-123-4567"
+				"value": "(800) 257-8443"
 			}],
-			"faxes": [{
-				"atts": {
-					"label": "For requests",
-					"iri": "workspace://SpacesStore/4ba2823c-4e9f-4b96-b12d-4ddd4fbcc20a"
-				},
-				"value": "301-945-1234"
-			}],
-			"emails": [{
-				"atts": {
-					"type": "Business (example of a type)",
-					"label": "For inquries (example of a label)",
-					"iri": "workspace://SpacesStore/e00fd33b-5a0d-4af4-b4c0-2caf8fa8fc40"
-				},
-				"value": "pablo@45rpm.com"
-			}],
+			"faxes": {},
+			"emails": {},
 			"websites": [{
 				"atts": {
-					"iri": "http://taxnotes.com/property/iri/d88f510e-a9ed-417b-8b2c-da0bdc5b0a3e",
-					"label": "Main website (this is a label)"
+					"iri": "http://taxnotes.com/property/iri/e2987012-e4a6-401a-8891-527d87254ab6"
 				},
-				"value": "https://www.ohionational.com"
+				"value": "https://www.campbellsoupcompany.com/"
 			}],
 			"organization_personnel": [{
-				"ta_person": {
-					"atts": {
-						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/bc988b73-8ddc-446b-a57b-ca6398564f80"
-					},
-					"value": "Coppola, Rocky"
-				},
 				"ta_positionTitle": "Senior Vice President & Chief Financial Officer",
 				"td_positionTitleAbbrev": "SVP & CFO",
+				"ta_emails": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/5eb41303-4963-4129-b9fa-fe3f9ba3b33b"
+					},
+					"value": "tony_disilvestro@campbellsoupcompany.com"
+				}],
 				"ta_phones": [{
 					"atts": {
-						"iri": "http://taxnotes.com/property/iri/7ced4714-5f28-4c03-9d9b-d16c933e2ce9"
+						"iri": "http://taxnotes.com/property/iri/d726247d-9d53-4593-a8d6-92a0670ab50f"
 					},
-					"value": "(513) 794-6100"
+					"value": "(856) 342-4800"
+				}],
+				"ta_faxes": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/d909abb7-ae34-4505-8320-62b8f69ec3b0"
+					},
+					"value": "(856) 342-3878"
 				}],
 				"ta_address": [{
 					"atts": {
-						"iri": "http://taxnotes.com/property/iri/3af9dc5c-c2d9-4fa5-86fe-f959909b4dbf"
+						"iri": "http://taxnotes.com/property/iri/2e528a15-4f67-4944-a50d-e6a650434093"
 					},
-					"ta_street": ["One Financial Way"],
-					"ta_city": "Cincinnati",
-					"ta_state": "OH",
-					"ta_postalCode": "45242"
+					"ta_street": ["1 Campbell Pl."],
+					"ta_city": "Camden",
+					"ta_state": "NJ",
+					"ta_postalCode": "08103-1799"
+				}],
+				"ta_person": {
+					"atts": {
+						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/ab59e88e-6845-4106-8b5d-5df7af2b0768"
+					},
+					"value": "Mick Beekhuizen"
+				},
+				"ta_showOnWebInfoTab": "true"
+			}, {
+				"ta_person": {
+					"atts": {
+						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/54941f6d-5595-4a15-94ad-d9d605302f52"
+					},
+					"value": "Richard Landers"
+				},
+				"ta_positionTitle": "Vice President — Tax and Real Estate",
+				"td_positionTitleAbbrev": "Vice President — Tax and Real Estate",
+				"ta_phones": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/232a2c31-e30c-4ba4-b035-78d6b9f538be"
+					},
+					"value": "(856) 342-4800"
+				}],
+				"ta_faxes": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/0d96edd8-0a24-4c06-b08d-38d5263f0ef6"
+					},
+					"value": "(856) 342-3878"
+				}],
+				"ta_address": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/7f8101f2-0ede-4c66-9690-8763f80cf22f"
+					},
+					"ta_street": ["1 Campbell Pl."],
+					"ta_city": "Camden",
+					"ta_state": "NJ",
+					"ta_postalCode": "08103-1799"
+				}],
+				"ta_showOnWebInfoTab": "true"
+			}, {
+				"ta_person": {
+					"atts": {
+						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/ab1a9c34-46fb-43dc-9633-32840a973e79"
+					},
+					"value": "David Vincoff"
+				},
+				"ta_positionTitle": "Vice President — Tax",
+				"td_positionTitleAbbrev": "Vice President — Tax",
+				"ta_phones": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/8652f8ea-9e6f-4ba8-a3bc-17dc47810ca6"
+					},
+					"value": "(856) 342-4800"
+				}],
+				"ta_faxes": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/ca6ceca9-c0c7-4033-9160-01c52d8d504b"
+					},
+					"value": "(856) 342-3878"
+				}],
+				"ta_address": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/13b22639-1568-4ea2-bf71-d9ac48c22641"
+					},
+					"ta_street": ["1 Campbell Pl."],
+					"ta_city": "Camden",
+					"ta_state": "NJ",
+					"ta_postalCode": "08103-1799"
 				}],
 				"ta_showOnWebInfoTab": "true"
 			}]
@@ -130,5 +187,5 @@ createPdfFrom(jsonString).then(pdf => {
     let base64File = pdf.split(';base64,').pop();
     fs.writeFile('organization.pdf', base64File, { encoding: 'base64'}, err => console.log('File created'));
 }).catch(error => {
-    console.error(error);
+	console.error(error);
 });

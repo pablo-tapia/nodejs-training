@@ -37,14 +37,15 @@ module.exports = {
         let standardBreakline = 40;
         let sectionBreakline = 30;
         let subSectionBreakline = 25;
-        let propertiesBreakline = 20;
+		let propertiesBreakline = 20;
+		let fontColor = rgb(0, 0, 0);
 
 		page.drawText('Organization Name: ', {
 			x: textPositionLeft,
 			y: height = height - standardBreakline,
 			size: fontRegularSize,
 			font: fontBold,
-			color: rgb(0, 0, 0)
+			color: fontColor
 		});
 
 		page.drawText(json.org.organization_name, {
@@ -52,49 +53,56 @@ module.exports = {
 			y: height,
 			size: fontRegularSize,
 			font: font,
-			color: rgb(0, 0, 0)
+			color: fontColor
 		});
 
-		page.drawText('Directory Contact: ', {
+		page.drawText('Directory Contact:', {
 			x: textPositionLeft,
 			y: height = height - standardBreakline,
 			size: fontRegularSize,
 			font: fontBold,
-			color: rgb(0, 0, 0)
+			color: fontColor
 		});
 
-		page.drawText('Note to Directory Editors: ', {
+		page.drawText('Note to Directory Editors:', {
 			x: textPositionRight,
 			y: height,
 			size: fontRegularSize,
 			font: fontBold,
-			color: rgb(0, 0, 0)
+			color: fontColor
 		});
 
 		let heightForNotes = height;
 
 		for (let contact of ['contactName', 'contactEmail', 'contactFax', 'notes']) {
 			if (json.hasOwnProperty(contact)) {
+
+				// Make sure to add a label when the field is empty
+				let placeholderForContact = (json[contact] !== null)
+					? json[contact]
+					: (contact !== 'notes') ? `Contact ${contact.replace('contact', '').toLowerCase()}:` : '';
+
 				if (contact === 'notes') {
                     // Notes can be paragraphs so let's use a smaller font size
                     // and set a width so it displays in several lines
-					page.drawText(json[contact], {
+					page.drawText(placeholderForContact, {
 						x: textPositionRight,
 						y: heightForNotes -propertiesBreakline,
 						size: 11,
 						font: font,
-                        color: rgb(0, 0, 0),
+                        color: fontColor,
                         maxWidth: 267,
                         lineHeight: 15
 					});
 					continue;
 				} // end if
-				page.drawText(json[contact], {
+
+				page.drawText(placeholderForContact, {
 					x: textPositionLeft,
 					y: height = height - propertiesBreakline,
 					size: fontRegularSize,
 					font: font,
-					color: rgb(0, 0, 0)
+					color: fontColor
 				});
 			} // end if
 		} // end for
@@ -103,7 +111,7 @@ module.exports = {
 			start: { x: textPositionLeft, y: height = height - propertiesBreakline },
 			end: { x: width - textPositionLeft, y: height },
 			thickness: 1,
-			color: rgb(0, 0, 0),
+			color: fontColor,
 		});
 
 		page.drawText('Organization Contact Information', {
@@ -111,7 +119,7 @@ module.exports = {
 			y: height = height - sectionBreakline,
 			size: fontSectionSize,
 			font: fontBold,
-			color: rgb(0, 0, 0)
+			color: fontColor
 		});
 
 		page.drawText('Addresses:', {
@@ -119,35 +127,177 @@ module.exports = {
 			y: height = height - subSectionBreakline,
 			size: fontRegularSize,
 			font: fontBold,
-			color: rgb(0, 0, 0)
+			color: fontColor
 		});
 
-		for (let address of json.org.addresses) {
-			for (let addressAttr in address) {
-				if (addressAttr === 'atts') {
-					continue;
-				} // end if
+		if (Object.keys(json.org.addresses).length > 0) {
+			for (let address of json.org.addresses) {
+				let singleLine = '';
+				for (let addressAttr in address) {
+					if (addressAttr === 'atts') {
+						continue;
+					} // end if
 
-				if (addressAttr === 'ta_street') {
-					page.drawText(address[addressAttr][0], {
+					if (address[addressAttr] === null) {
+						let placeholder = addressAttr === 'ta_street' ? 'Address: ' : `${capitalize(addressAttr.replace('ta_', ''))}: `;
+						page.drawText(placeholder, {
+							x: textPositionLeft,
+							y: height = height - propertiesBreakline,
+							size: fontRegularSize,
+							font: font,
+							color: fontColor
+						});
+						continue;
+					} // end if
+
+					let singleLineAttributes = ['ta_city', 'ta_province', 'ta_state', 'ta_postalCode'];
+					if (singleLineAttributes.includes(addressAttr)) {
+						if (addressAttr === 'ta_city') {
+							singleLine = `${address['ta_city']},`;
+						} else if (addressAttr === 'ta_postalCode') {
+							page.drawText(`${singleLine} ${address['ta_postalCode']}`, {
+								x: textPositionLeft,
+								y: height = height - propertiesBreakline,
+								size: fontRegularSize,
+								font: font,
+								color: fontColor
+							});
+						} else {
+							singleLine = singleLine.concat(' ', address[addressAttr]);
+						} // end if - else if - else
+						continue;
+					} // end if
+
+					let placeholderForAddress = addressAttr === 'ta_street' ? address['ta_street'][0] : address[addressAttr];
+					page.drawText(placeholderForAddress, {
 						x: textPositionLeft,
 						y: height = height - propertiesBreakline,
 						size: fontRegularSize,
 						font: font,
-						color: rgb(0, 0, 0)
+						color: fontColor
 					});
-				} else {
-					page.drawText(`${address['ta_city']}, ${address['ta_state']} ${address['ta_postalCode']}`, {
-						x: textPositionLeft,
-						y: height = height - propertiesBreakline,
-						size: fontRegularSize,
-						font: font,
-						color: rgb(0, 0, 0)
-					});
-					break;
-				} // end if - else
+				} // end for
 			} // end for
-		} // end for
+		} else {
+			for (let placeholderForAddress of ['Address', 'City', 'State/Province', 'Postal Code', 'Country']) {
+				page.drawText(`${placeholderForAddress}:`, {
+					x: textPositionLeft,
+					y: height = height - propertiesBreakline,
+					size: fontRegularSize,
+					font: font,
+					color: fontColor
+				});
+			} // end for
+		} // end if - else
+
+		page.drawText('Phone and Fax Numbers', {
+			x: textPositionLeft,
+			y: height = height - subSectionBreakline,
+			size: fontRegularSize,
+			font: fontBold,
+			color: fontColor
+		});
+
+		if (Object.keys(json.org.phones).length > 0) {
+			for (let phone of json.org.phones) {
+				let phoneLabel = phone.atts.hasOwnProperty('label') ? phone.atts.label : phone.atts.type;
+				let phoneText = phoneLabel !== undefined ? `${phoneLabel}: ${phone.value}` : `Phone: ${phone.value}`;
+				page.drawText(phoneText, {
+					x: textPositionLeft,
+					y: height = height - propertiesBreakline,
+					size: fontRegularSize,
+					font: font,
+					color: fontColor
+				});
+			} // end for
+		} else {
+			page.drawText('Phone number:', {
+				x: textPositionLeft,
+				y: height = height - propertiesBreakline,
+				size: fontRegularSize,
+				font: font,
+				color: fontColor
+			});
+		} // end if - else
+
+		if (Object.keys(json.org.faxes).length > 0) {
+			for (let fax of json.org.faxes) {
+				let faxText = fax.atts.hasOwnProperty('label') ? `${fax.atts.label}: ${fax.value}` : `Fax: ${fax.value}`;
+				page.drawText(faxText, {
+					x: textPositionLeft,
+					y: height = height - propertiesBreakline,
+					size: fontRegularSize,
+					font: font,
+					color: fontColor
+				});
+			} // end for
+		} else {
+			page.drawText('Fax number:', {
+				x: textPositionLeft,
+				y: height = height - propertiesBreakline,
+				size: fontRegularSize,
+				font: font,
+				color: fontColor
+			});
+		} // end if
+
+		page.drawText('Websites', {
+			x: textPositionLeft,
+			y: height = height - subSectionBreakline,
+			size: fontRegularSize,
+			font: fontBold,
+			color: fontColor
+		});
+
+		if (Object.keys(json.org.websites).length > 0) {
+			for (let website of json.org.websites) {
+				let websiteText = website.atts.hasOwnProperty('label') ? `${website.atts.label}: ${website.value}` : `Site: ${website.value}`;
+				page.drawText(websiteText, {
+					x: textPositionLeft,
+					y: height = height - propertiesBreakline,
+					size: fontRegularSize,
+					font: font,
+					color: fontColor
+				});
+			} // end for
+		} else {
+			page.drawText('Site:', {
+				x: textPositionLeft,
+				y: height = height - propertiesBreakline,
+				size: fontRegularSize,
+				font: font,
+				color: fontColor
+			});
+		} // end if
+
+		page.drawText('Emails', {
+			x: textPositionLeft,
+			y: height = height - subSectionBreakline,
+			size: fontRegularSize,
+			font: fontBold,
+			color: fontColor
+		});
+
+		if (Object.keys(json.org.emails).length > 0) {
+			for (let email of json.org.emails) {
+				let emailText = email.atts.hasOwnProperty('label') ? `${email.atts.label}: ${email.value}` : `Email: ${email.value}`;
+				page.drawText(emailText, {
+					x: textPositionLeft,
+					y: height = height - propertiesBreakline,
+					size: fontRegularSize,
+					font: font,
+					color: fontColor
+				});
+			} // end for
+		} else {
+			page.drawText('Email address:', {
+				x: textPositionLeft,
+				y: height = height - propertiesBreakline,
+				size: fontRegularSize,
+				font: font,
+				color: fontColor
+			});
+		} // end if
 
 		if (Object.keys(json.org.other_information).length > 0) {
 			page.drawText('Other information', {
@@ -155,7 +305,7 @@ module.exports = {
 				y: height = height - subSectionBreakline,
 				size: fontRegularSize,
 				font: fontBold,
-				color: rgb(0, 0, 0)
+				color: fontColor
 			});
 
 			for (let information in json.org.other_information) {
@@ -164,7 +314,7 @@ module.exports = {
 					y: height = height - propertiesBreakline,
 					size: fontRegularSize,
 					font: font,
-					color: rgb(0, 0, 0)
+					color: fontColor
 				});
 
 				let text = (information === 'organization_description' || information === 'organization_background')
@@ -176,84 +326,7 @@ module.exports = {
 					y: height,
 					size: fontRegularSize,
 					font: font,
-					color: rgb(0, 0, 0)
-				});
-			} // end for
-		} // end if
-
-		if (Object.keys(json.org.phones).length > 0) {
-			page.drawText('Phone and Fax Numbers', {
-				x: textPositionLeft,
-				y: height = height - subSectionBreakline,
-				size: fontRegularSize,
-				font: fontBold,
-				color: rgb(0, 0, 0)
-			});
-
-			for (let phone of json.org.phones) {
-				let phoneLabel = phone.atts.hasOwnProperty('label') ? phone.atts.label : phone.atts.type;
-				let phoneText = phoneLabel !== undefined ? `${phoneLabel}: ${phone.value}` : `Phone: ${phone.value}`;
-				page.drawText(phoneText, {
-					x: textPositionLeft,
-					y: height = height - propertiesBreakline,
-					size: fontRegularSize,
-					font: font,
-					color: rgb(0, 0, 0)
-				});
-			} // end for
-		} // end if
-
-		if (Object.keys(json.org.faxes).length > 0) {
-			for (let fax of json.org.faxes) {
-				let faxText = fax.atts.hasOwnProperty('label') ? `${fax.atts.label}: ${fax.value}` : `Fax: ${fax.value}`;
-				page.drawText(faxText, {
-					x: textPositionLeft,
-					y: height = height - propertiesBreakline,
-					size: fontRegularSize,
-					font: font,
-					color: rgb(0, 0, 0)
-				});
-			} // end for
-		} // end if
-
-		if (Object.keys(json.org.websites).length > 0) {
-			page.drawText('Websites', {
-				x: textPositionLeft,
-				y: height = height - subSectionBreakline,
-				size: fontRegularSize,
-				font: fontBold,
-				color: rgb(0, 0, 0)
-			});
-
-			for (let website of json.org.websites) {
-				let websiteText = website.atts.hasOwnProperty('label') ? `${website.atts.label}: ${website.value}` : `Site: ${website.value}`;
-				page.drawText(websiteText, {
-					x: textPositionLeft,
-					y: height = height - propertiesBreakline,
-					size: fontRegularSize,
-					font: font,
-					color: rgb(0, 0, 0)
-				});
-			} // end for
-		} // end if
-
-		if (Object.keys(json.org.emails).length > 0) {
-			page.drawText('Emails', {
-				x: textPositionLeft,
-				y: height = height - subSectionBreakline,
-				size: fontRegularSize,
-				font: fontBold,
-				color: rgb(0, 0, 0)
-			});
-
-			for (let email of json.org.emails) {
-				let emailText = email.atts.hasOwnProperty('label') ? `${email.atts.label}: ${email.value}` : `Email: ${email.value}`;
-				page.drawText(emailText, {
-					x: textPositionLeft,
-					y: height = height - propertiesBreakline,
-					size: fontRegularSize,
-					font: font,
-					color: rgb(0, 0, 0)
+					color: fontColor
 				});
 			} // end for
 		} // end if
@@ -262,7 +335,7 @@ module.exports = {
 			start: { x: textPositionLeft, y: height = height - propertiesBreakline },
 			end: { x: width - textPositionLeft, y: height },
 			thickness: 1,
-			color: rgb(0, 0, 0),
+			color: fontColor,
 		});
 
 		if (Object.keys(json.org.organization_personnel).length > 0) {
@@ -271,7 +344,7 @@ module.exports = {
 				y: height = height - sectionBreakline,
 				size: fontSectionSize,
 				font: fontBold,
-				color: rgb(0, 0, 0)
+				color: fontColor
 			});
 
 			// Let's check we still have enough space to put the staff data
@@ -306,10 +379,10 @@ module.exports = {
 				for (let [index, staff] of staffChunks.entries()) {
 					pageForPersonnel.drawText(staff.ta_person.value, {
 						x: index > 0 ? textPositionRight : textPositionLeft,
-						y: index > 0 ? heightForName : heightForPersonnel = heightForPersonnel - subSectionBreakline,
+						y: index > 0 ? heightForName : heightForPersonnel = heightForPersonnel - standardBreakline,
 						size: fontRegularSize,
 						font: font,
-						color: rgb(0, 0, 0)
+						color: fontColor
 					});
 
 					heightForName = heightForPersonnel;
@@ -319,7 +392,7 @@ module.exports = {
 						y: index > 0 ? heightForPosition : heightForPersonnel = heightForPersonnel - propertiesBreakline,
 						size: fontRegularSize,
 						font: font,
-						color: rgb(0, 0, 0)
+						color: fontColor
 					});
 
 					heightForPosition = heightForPersonnel;
@@ -331,7 +404,7 @@ module.exports = {
 								y: index > 0 ? heightForPhones : heightForPersonnel = heightForPersonnel - propertiesBreakline,
 								size: fontRegularSize,
 								font: font,
-								color: rgb(0, 0, 0)
+								color: fontColor
 							});
 						} // end for
 					} // end if
@@ -345,7 +418,7 @@ module.exports = {
 								y: index > 0 ? heightForFaxes : heightForPersonnel = heightForPersonnel - propertiesBreakline,
 								size: fontRegularSize,
 								font: font,
-								color: rgb(0, 0, 0)
+								color: fontColor
 							});
 						} // end for
 					} // end if
@@ -359,7 +432,7 @@ module.exports = {
 								y: index > 0 ? heightForEmails : heightForPersonnel = heightForPersonnel - propertiesBreakline,
 								size: fontRegularSize,
 								font: font,
-								color: rgb(0, 0, 0)
+								color: fontColor
 							});
 						} // end for
 					} // end if
@@ -373,18 +446,32 @@ module.exports = {
 								y: index > 0 ? heightForAddress[0] : heightForPersonnel = heightForPersonnel - propertiesBreakline,
 								size: fontRegularSize,
 								font: font,
-								color: rgb(0, 0, 0)
+								color: fontColor
 							});
 
 							heightForAddress[0] = heightForPersonnel;
 
-							pageForPersonnel.drawText(`${address.ta_city}, ${address.ta_state} ${address.ta_postalCode}`, {
+							let stateOrProvince = address.hasOwnProperty('ta_province') 
+								? address.ta_province 
+								: address.hasOwnProperty('ta_state') ? address.ta_state : '';
+
+							pageForPersonnel.drawText(`${address.ta_city}, ${stateOrProvince} ${address.ta_postalCode}`, {
 								x: index > 0 ? textPositionRight : textPositionLeft,
 								y: index > 0 ? heightForAddress[1] : heightForPersonnel = heightForPersonnel - propertiesBreakline,
 								size: fontRegularSize,
 								font: font,
-								color: rgb(0, 0, 0)
+								color: fontColor
 							});
+
+							if (address.hasOwnProperty('ta_country')) {
+								pageForPersonnel.drawText(address.ta_country, {
+									x: index > 0 ? textPositionRight : textPositionLeft,
+									y: index > 0 ? heightForAddress[1] : heightForPersonnel = heightForPersonnel - propertiesBreakline,
+									size: fontRegularSize,
+									font: font,
+									color: fontColor
+								});
+							} // end if
 
 							heightForAddress[1] = heightForPersonnel;
 						} // end for
