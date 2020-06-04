@@ -1,4 +1,8 @@
 const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
+const striptags = require('striptags');
+const fs = require('fs');
+const path = require('path');
+
 /**
  * Quick function that capitalizes the first letter of each word
  * @param {String} word
@@ -22,14 +26,7 @@ module.exports = {
         const pdf = await PDFDocument.create();
         const [ font, fontBold ] = await Promise.all([pdf.embedFont(StandardFonts.TimesRoman), pdf.embedFont(StandardFonts.TimesRomanBold)]);
 
-        if (coverText !== null) {
-            const coverLetter = pdf.addPage();
-            // Code to add text
-        } // end if
-
-		const page = pdf.addPage();
-		let { width, height } = page.getSize();
-        // Let's set some variables to define spaces and breaklines inside the PDF
+		// Define a couple of properties to use to draw to the page
 		let fontSectionSize = 15;
 		let fontRegularSize = 12;
         let textPositionLeft = 50;
@@ -39,6 +36,56 @@ module.exports = {
         let subSectionBreakline = 25;
 		let propertiesBreakline = 20;
 		let fontColor = rgb(0, 0, 0);
+
+        if (coverText !== null) {
+			const templatePDFPath = path.join(__dirname, 'CoverSheet.pdf');
+			const pdfTemplateBytes = await fs.promises.readFile(templatePDFPath);
+			const faxCoverLetter = await PDFDocument.load(pdfTemplateBytes);
+			const [ faxCoverPage ] = await pdf.copyPages(faxCoverLetter, [0]);
+			const coverLetter = pdf.addPage(faxCoverPage);
+
+			let to = json.contactName || 'Whom it may concern';
+			let fax = json.contactFax || '';
+			coverLetter.drawText(to, {
+				x: 125,
+				y: 645,
+				size: fontRegularSize,
+				font: font,
+				color: fontColor
+			});
+
+			coverLetter.drawText(fax, {
+				x: 125,
+				y: 620,
+				size: fontRegularSize,
+				font: font,
+				color: fontColor
+			});
+
+			let date = new Date().toISOString().substring(0, 10);
+			coverLetter.drawText(date, {
+				x: 377,
+				y: 595,
+				size: fontRegularSize,
+				font: font,
+				color: fontColor
+			});
+			// Replace paragrahps with breaklines
+			let withoutParagraphs = striptags(coverText, ['a', 'span', 'div', 'section'], '\n');
+			let withoutHTML = striptags(withoutParagraphs);
+			coverLetter.drawText(withoutHTML, {
+				x: 120,
+				y: 520,
+				size: fontRegularSize,
+				font: font,
+				color: fontColor,
+				maxWidth: 420,
+				lineHeight: 20
+			});
+        } // end if
+
+		const page = pdf.addPage();
+		let { width, height } = page.getSize();
 
 		page.drawText('Organization Name: ', {
 			x: textPositionLeft,

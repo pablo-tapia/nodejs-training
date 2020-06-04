@@ -30,6 +30,7 @@ let createPdfFrom = async (body) => {
     try {
 		return await pdf.createOrganizationPDF(cover, survey);
 	} catch (error) {
+		// Make sure to get the original error with trace and everything
 		console.log(error);
 		throw { 'code': 500, 'message': `Service error. ${error.message}.` };
 	} // end try - catch
@@ -39,8 +40,8 @@ let surveyObject = {
 	"coverText": null,
 	"survey": {
 		"contactName": null,
-		"contactEmail": "email",
-		"contactFax": "fax",
+		"contactEmail": "scott@avengers.com",
+		"contactFax": "2029031222",
 		"notes": null,
 		"org": {
 			"rid": "g",
