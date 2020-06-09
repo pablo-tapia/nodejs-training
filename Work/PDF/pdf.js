@@ -38,13 +38,13 @@ module.exports = {
 		let fontColor = rgb(0, 0, 0);
 
         if (coverText !== null) {
-			const templatePDFPath = path.join(__dirname, 'CoverSheet.pdf');
+			const templatePDFPath = path.join(__dirname, 'templates', 'CoverSheet.pdf');
 			const pdfTemplateBytes = await fs.promises.readFile(templatePDFPath);
 			const faxCoverLetter = await PDFDocument.load(pdfTemplateBytes);
 			const [ faxCoverPage ] = await pdf.copyPages(faxCoverLetter, [0]);
 			const coverLetter = pdf.addPage(faxCoverPage);
 
-			let to = json.contactName || 'Whom it may concern';
+			let to = json.contactName || '';
 			let fax = json.contactFax || '';
 			coverLetter.drawText(to, {
 				x: 125,
@@ -95,7 +95,7 @@ module.exports = {
 			color: fontColor
 		});
 
-		page.drawText(json.org.organization_name, {
+		page.drawText(json.org.organization_name || '', {
 			x: 170,
 			y: height,
 			size: fontRegularSize,
@@ -151,6 +151,16 @@ module.exports = {
 					font: font,
 					color: fontColor
 				});
+			} else {
+				if (contact !== 'notes') {
+					page.drawText(`Contact ${contact.replace('contact', '').toLowerCase()}:`, {
+						x: textPositionLeft,
+						y: height = height - propertiesBreakline,
+						size: fontRegularSize,
+						font: font,
+						color: fontColor
+					});
+				} // end if
 			} // end if
 		} // end for
 
@@ -177,7 +187,7 @@ module.exports = {
 			color: fontColor
 		});
 
-		if (Object.keys(json.org.addresses).length > 0) {
+		if (json.org.hasOwnProperty('addresses')) {
 			for (let address of json.org.addresses) {
 				let singleLine = '';
 				for (let addressAttr in address) {
@@ -245,7 +255,7 @@ module.exports = {
 			color: fontColor
 		});
 
-		if (Object.keys(json.org.phones).length > 0) {
+		if (json.org.hasOwnProperty('phones')) {
 			for (let phone of json.org.phones) {
 				let phoneLabel = phone.atts.hasOwnProperty('label') ? phone.atts.label : phone.atts.type;
 				let phoneText = phoneLabel !== undefined ? `${phoneLabel}: ${phone.value}` : `Phone: ${phone.value}`;
@@ -267,7 +277,7 @@ module.exports = {
 			});
 		} // end if - else
 
-		if (Object.keys(json.org.faxes).length > 0) {
+		if (json.org.hasOwnProperty('faxes')) {
 			for (let fax of json.org.faxes) {
 				let faxText = fax.atts.hasOwnProperty('label') ? `${fax.atts.label}: ${fax.value}` : `Fax: ${fax.value}`;
 				page.drawText(faxText, {
@@ -296,9 +306,9 @@ module.exports = {
 			color: fontColor
 		});
 
-		if (Object.keys(json.org.websites).length > 0) {
+		if (json.org.hasOwnProperty('websites')) {
 			for (let website of json.org.websites) {
-				let websiteText = website.atts.hasOwnProperty('label') ? `${website.atts.label}: ${website.value}` : `Site: ${website.value}`;
+				let websiteText = website.atts.hasOwnProperty('label') ? `${website.atts.label}: ${website.value}` : `Website: ${website.value}`;
 				page.drawText(websiteText, {
 					x: textPositionLeft,
 					y: height = height - propertiesBreakline,
@@ -308,7 +318,7 @@ module.exports = {
 				});
 			} // end for
 		} else {
-			page.drawText('Site:', {
+			page.drawText('Website:', {
 				x: textPositionLeft,
 				y: height = height - propertiesBreakline,
 				size: fontRegularSize,
@@ -325,7 +335,7 @@ module.exports = {
 			color: fontColor
 		});
 
-		if (Object.keys(json.org.emails).length > 0) {
+		if (json.org.hasOwnProperty('emails')) {
 			for (let email of json.org.emails) {
 				let emailText = email.atts.hasOwnProperty('label') ? `${email.atts.label}: ${email.value}` : `Email: ${email.value}`;
 				page.drawText(emailText, {
@@ -346,7 +356,7 @@ module.exports = {
 			});
 		} // end if
 
-		if (Object.keys(json.org.other_information).length > 0) {
+		if (json.org.hasOwnProperty('other_information')) {
 			page.drawText('Other information', {
 				x: textPositionLeft,
 				y: height = height - subSectionBreakline,
@@ -365,7 +375,7 @@ module.exports = {
 				});
 
 				let text = (information === 'organization_description' || information === 'organization_background')
-					? json.org.other_information[information].replace(/(<([^>]+)>)/ig, '') 
+					? striptags(json.org.other_information[information])
 					: json.org.other_information[information];
 
 				page.drawText(text, {
@@ -385,7 +395,7 @@ module.exports = {
 			color: fontColor,
 		});
 
-		if (Object.keys(json.org.organization_personnel).length > 0) {
+		if (json.org.hasOwnProperty('organization_personnel')) {
 			page.drawText('Organization Personnel ', {
 				x: textPositionLeft,
 				y: height = height - sectionBreakline,

@@ -7,21 +7,22 @@ const users = new Array(20).fill(0)
   }
 })
 
+console.log(users);
+
 // simulate async db call with promise
 const findUser = (id) => new Promise((resolve, reject) => {
-  const user = users.find(user => user.id === id)
-  if (user) {
+  const user = users.find(u => u.id == id)
+  if (user !== undefined) {
     return resolve(user)
-  }
+  } // end if
   reject(new Error(`No user with id "${id}"`))
 })
 
 // simulate async db call with promise
 const deleteUser = (id) => new Promise((resolve, reject) => {
-  const id = fixId(id)
-  const i = users.findIndex(user => user.id === id)
-
-  if (i < 0) {
+  const i = users.findIndex(u => u.id == id)
+  console.log(i)
+  if (i === undefined) {
     return reject(new Error(`No user with id "${id}"`))
   }
 
