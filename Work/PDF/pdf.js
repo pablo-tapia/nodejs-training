@@ -15,6 +15,23 @@ const capitalize = (word) => {
 	return word.join(' ');
 };
 
+/**
+ * This function validates the property exists and is not empty
+ * @param {String} key - the property key
+ * @param {Object} from - the object to check from
+ */
+const isNotEmpty = (key, from) => {
+	if (!from.hasOwnProperty(key)) {
+		return false;
+	} // end if
+
+	if (Object.keys(from[key]).length === 0) {
+		return false;
+	} // end if
+
+	return true;
+};
+
 module.exports = {
     /**
      * Creates a PDF file that can be faxed to contacts, the file contains data extracted from a JSON
@@ -125,7 +142,7 @@ module.exports = {
 			if (json.hasOwnProperty(contact)) {
 
 				// Make sure to add a label when the field is empty
-				let placeholderForContact = (json[contact] !== null)
+				let placeholderForContact = json[contact] !== null
 					? json[contact]
 					: (contact !== 'notes') ? `Contact ${contact.replace('contact', '').toLowerCase()}:` : '';
 
@@ -161,7 +178,7 @@ module.exports = {
 						color: fontColor
 					});
 				} // end if
-			} // end if
+			} // end if - else
 		} // end for
 
 		page.drawLine({
@@ -187,7 +204,7 @@ module.exports = {
 			color: fontColor
 		});
 
-		if (json.org.hasOwnProperty('addresses')) {
+		if (isNotEmpty('addresses', json.org)) {
 			for (let address of json.org.addresses) {
 				let singleLine = '';
 				for (let addressAttr in address) {
@@ -255,7 +272,7 @@ module.exports = {
 			color: fontColor
 		});
 
-		if (json.org.hasOwnProperty('phones')) {
+		if (isNotEmpty('phones', json.org)) {
 			for (let phone of json.org.phones) {
 				let phoneLabel = phone.atts.hasOwnProperty('label') ? phone.atts.label : phone.atts.type;
 				let phoneText = phoneLabel !== undefined ? `${phoneLabel}: ${phone.value}` : `Phone: ${phone.value}`;
@@ -277,7 +294,7 @@ module.exports = {
 			});
 		} // end if - else
 
-		if (json.org.hasOwnProperty('faxes')) {
+		if (isNotEmpty('faxes', json.org)) {
 			for (let fax of json.org.faxes) {
 				let faxText = fax.atts.hasOwnProperty('label') ? `${fax.atts.label}: ${fax.value}` : `Fax: ${fax.value}`;
 				page.drawText(faxText, {
@@ -306,7 +323,7 @@ module.exports = {
 			color: fontColor
 		});
 
-		if (json.org.hasOwnProperty('websites')) {
+		if (isNotEmpty('websites', json.org)) {
 			for (let website of json.org.websites) {
 				let websiteText = website.atts.hasOwnProperty('label') ? `${website.atts.label}: ${website.value}` : `Website: ${website.value}`;
 				page.drawText(websiteText, {
@@ -335,7 +352,7 @@ module.exports = {
 			color: fontColor
 		});
 
-		if (json.org.hasOwnProperty('emails')) {
+		if (isNotEmpty('emails', json.org)) {
 			for (let email of json.org.emails) {
 				let emailText = email.atts.hasOwnProperty('label') ? `${email.atts.label}: ${email.value}` : `Email: ${email.value}`;
 				page.drawText(emailText, {
@@ -356,7 +373,7 @@ module.exports = {
 			});
 		} // end if
 
-		if (json.org.hasOwnProperty('other_information')) {
+		if (isNotEmpty('other_information', json.org)) {
 			page.drawText('Other information', {
 				x: textPositionLeft,
 				y: height = height - subSectionBreakline,
@@ -395,7 +412,7 @@ module.exports = {
 			color: fontColor,
 		});
 
-		if (json.org.hasOwnProperty('organization_personnel')) {
+		if (isNotEmpty('organization_personnel', json.org)) {
 			page.drawText('Organization Personnel ', {
 				x: textPositionLeft,
 				y: height = height - sectionBreakline,
@@ -416,18 +433,18 @@ module.exports = {
 			} // end for
 
 			for (let [staffIndex, staffChunks] of staffMembers.entries()) {
-                // If there's more than 2 staff members, it's safe to assume we need a new page
-                // We're also assuming we only need to do this one time, since most examples have
-                // 2 -5 staff members, if the number is higher we need to update this
+				// If there's more than 2 staff members, it's safe to assume we need a new page
+				// We're also assuming we only need to do this one time, since most examples have
+				// 2 -5 staff members, if the number is higher we need to update this
 				if (staffIndex === 1) {
 					pageForPersonnel = pdf.addPage();
 					heightForPersonnel = pageForPersonnel.getSize().height;
 				} // end if
 
 				let heightForName = 0;
-                let heightForPosition = 0;
-                // Height define for this elements is based on the assumption that even when they're
-                // arrays, it contains only one element.
+				let heightForPosition = 0;
+				// Height define for this elements is based on the assumption that even when they're
+				// arrays, it contains only one element.
 				let heightForPhones = 0;
 				let heightForFaxes = 0;
 				let heightForEmails = 0;

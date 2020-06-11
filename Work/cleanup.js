@@ -165,168 +165,168 @@ let organizationParser = async (json) => {
 }
 
 let jsonObject = {
-   "rid": "29fc7",
-   "entity": {
-      "rid": "29fc7",
-      "type": "OrganizationType",
-      "AlfrescoNodeRef": "workspace://SpacesStore/0a2405b5-de98-43b0-9d68-efbd7cd2b9ad",
-      "triples": [{
-         "subject": "http://ixxus.com/model/source-id#workspace://SpacesStore/0a2405b5-de98-43b0-9d68-efbd7cd2b9ad",
-         "predicate": "http://taxnotes.com/model/entities/markedForDeletion",
-         "object": {
-            "datatype": "string",
-            "value": "false"
-         }
-      }],
-      "catchAll": "<tdcompany xmlns:taf=\"http://taxnotes.com/files#\" xmlns:ta=\"http://www.ixxus.co.uk/model/ta-cms/1.0\" xmlns:tap=\"http://www.ixxus.co.uk/model/ta-pubpipeline/1.0\" xmlns:tar=\"http://www.ixxus.co.uk/model/ta-resolver/1.0\" xmlns:app=\"http://www.alfresco.org/model/application/1.0\" xmlns:cm=\"http://www.alfresco.org/model/content/1.0\" xmlns:sys=\"http://www.alfresco.org/model/system/1.0\" xmlns:tan=\"http://www.taxnotes.com/model/ta-cms/1.0\" xmlns:td=\"http://www.taxnotes.com/model/tax-directory\">\n  <opt_num_01>8180E</opt_num_01>\n  <pub_code>GOV</pub_code>\n  <co_code>365905</co_code>\n  <br_code>0000</br_code>\n  <print_ordr>0</print_ordr>\n  <sect_fathr>8180</sect_fathr>\n  <co_name>Bank of France</co_name>\n</tdcompany>",
-      "addresses": [{
-         "atts": {
-            "iri": "http://taxnotes.com/property/iri/d1e0aba8-23a0-4733-9a4a-5974a70f196e"
-         },
-         "ta_street": ["31 rue Croix des Petits Champs"],
-         "ta_city": "Paris",
-         "ta_postalCode": "75001",
-         "ta_country": "France"
-      }],
-      "positions": [{
-         "atts": {
-            "iri": "http://taxnotes.com/property/iri/17f368c0-8cb2-4c52-abaa-13831ce6a581"
-         },
-         "ta_person": {
-            "atts": {
-               "iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/3e88fe1b-6f7d-47c6-86f9-a7283d294df2"
-            },
-            "value": "de Galhau, François Villeroy"
-         },
-         "ta_positionTitle": {
-            "value": "Governor"
-         },
-         "td_positionTitleAbbrev": {
-            "value": "Governor"
-         },
-         "ta_phones": {
-            "values": [{
-               "atts": {
-                  "iri": "http://taxnotes.com/property/iri/622fca6c-962f-44e2-87be-0814d8d22a98"
-               },
-               "value": "(33-1) 42-92-39-08"
-            }]
-         },
-         "ta_address": [{
-            "atts": {
-               "iri": "http://taxnotes.com/property/iri/603fb84e-300a-4925-8a23-6ccceedd667a"
-            },
-            "ta_street": ["31 rue Croix des Petits Champs"],
-            "ta_city": "Paris",
-            "ta_postalCode": "75001",
-            "ta_country": "France"
-         }],
-         "ta_showOnWebInfoTab": {
-            "value": "true"
-         }
-      }],
-      "properties": {
-         "cm_modified": {
-            "value": "2020-01-30T22:02:22Z"
-         },
-         "cm_created": {
-            "value": "2019-04-29T16:20:55Z"
-         },
-         "cm_name": {
-            "value": "France, Bank of France"
-         },
-         "ta_displayName": {
-            "value": "Bank of France"
-         },
-         "cm_title": {
-            "atts": {
-               "rich-text": "true"
-            },
-            "rich-text-value": "<p>Bank of France</p>"
-         },
-         "cm_creator": {
-            "value": "jaugst"
-         },
-         "cm_modifier": {
-            "value": "zacharya"
-         },
-         "cm_description": {
-            "value": "Official for Banque de France"
-         },
-         "td_shortName": {
-            "value": "Bank of France"
-         },
-         "ta_websites": {
-            "values": [{
-               "atts": {
-                  "iri": "http://taxnotes.com/property/iri/47d3c119-9c39-4971-afa3-8c4184a27451"
-               },
-               "value": "https://www.banque-france.fr/"
-            }]
-         },
-         "ta_phones": {
-            "values": [{
-               "atts": {
-                  "iri": "http://taxnotes.com/property/iri/e2fee372-fe66-4469-892c-0d18f08e6993"
-               },
-               "value": "(33-1) 42-92-42-92"
-            }]
-         },
-         "ta_emails": {
-            "values": [{
-               "atts": {
-                  "iri": "http://taxnotes.com/property/iri/83a294bf-93b7-47fd-8532-c9f19a711e8f"
-               },
-               "value": "infos@banque-france.fr"
-            }]
-         },
-         "ta_faxes": {
-            "values": [{
-               "atts": {
-                  "iri": "http://taxnotes.com/property/iri/e2490e34-3618-4659-a0ad-717c3178e1c7"
-               },
-               "value": "(33-1) 42-92-39-40"
-            }]
-         },
-         "ta_orgType": {
-            "values": [{
-               "value": "Government agency"
-            }, {
-               "value": "Financial institution"
-            }]
-         },
-         "ta_jurisdictions": {
-            "values": [{
-               "value": "France"
-            }]
-         },
-         "ta_nameVariants": {
-            "values": [{
-               "value": "Banque de France"
-            }, {
-               "value": "Bank of France"
-            }]
-         },
-         "ta_otherIris": {
-            "values": [{
-               "value": "https://en.wikipedia.org/wiki/Bank_of_France"
-            }]
-         },
-         "ta_productType": {
-            "values": [{
-               "value": "Tax Directory"
-            }]
-         },
-         "ta_drupalProductSection": {
-            "values": [{
-               "value": "Government"
-            }]
-         },
-         "ta_suppressOnWeb": {
-            "value": "false"
-         }
-      }
-   }
+	"rid": "29fc7",
+	"entity": {
+		"rid": "29fc7",
+		"type": "OrganizationType",
+		"AlfrescoNodeRef": "workspace://SpacesStore/0a2405b5-de98-43b0-9d68-efbd7cd2b9ad",
+		"triples": [{
+			"subject": "http://ixxus.com/model/source-id#workspace://SpacesStore/0a2405b5-de98-43b0-9d68-efbd7cd2b9ad",
+			"predicate": "http://taxnotes.com/model/entities/markedForDeletion",
+			"object": {
+				"datatype": "string",
+				"value": "false"
+			}
+		}],
+		"catchAll": "<tdcompany xmlns:taf=\"http://taxnotes.com/files#\" xmlns:ta=\"http://www.ixxus.co.uk/model/ta-cms/1.0\" xmlns:tap=\"http://www.ixxus.co.uk/model/ta-pubpipeline/1.0\" xmlns:tar=\"http://www.ixxus.co.uk/model/ta-resolver/1.0\" xmlns:app=\"http://www.alfresco.org/model/application/1.0\" xmlns:cm=\"http://www.alfresco.org/model/content/1.0\" xmlns:sys=\"http://www.alfresco.org/model/system/1.0\" xmlns:tan=\"http://www.taxnotes.com/model/ta-cms/1.0\" xmlns:td=\"http://www.taxnotes.com/model/tax-directory\">\n  <opt_num_01>8180E</opt_num_01>\n  <pub_code>GOV</pub_code>\n  <co_code>365905</co_code>\n  <br_code>0000</br_code>\n  <print_ordr>0</print_ordr>\n  <sect_fathr>8180</sect_fathr>\n  <co_name>Bank of France</co_name>\n</tdcompany>",
+		"addresses": [{
+			"atts": {
+				"iri": "http://taxnotes.com/property/iri/d1e0aba8-23a0-4733-9a4a-5974a70f196e"
+			},
+			"ta_street": ["31 rue Croix des Petits Champs"],
+			"ta_city": "Paris",
+			"ta_postalCode": "75001",
+			"ta_country": "France"
+		}],
+		"positions": [{
+			"atts": {
+				"iri": "http://taxnotes.com/property/iri/17f368c0-8cb2-4c52-abaa-13831ce6a581"
+			},
+			"ta_person": {
+				"atts": {
+					"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/3e88fe1b-6f7d-47c6-86f9-a7283d294df2"
+				},
+				"value": "de Galhau, François Villeroy"
+			},
+			"ta_positionTitle": {
+				"value": "Governor"
+			},
+			"td_positionTitleAbbrev": {
+				"value": "Governor"
+			},
+			"ta_phones": {
+				"values": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/622fca6c-962f-44e2-87be-0814d8d22a98"
+					},
+					"value": "(33-1) 42-92-39-08"
+				}]
+			},
+			"ta_address": [{
+				"atts": {
+					"iri": "http://taxnotes.com/property/iri/603fb84e-300a-4925-8a23-6ccceedd667a"
+				},
+				"ta_street": ["31 rue Croix des Petits Champs"],
+				"ta_city": "Paris",
+				"ta_postalCode": "75001",
+				"ta_country": "France"
+			}],
+			"ta_showOnWebInfoTab": {
+				"value": "true"
+			}
+		}],
+		"properties": {
+			"cm_modified": {
+				"value": "2020-01-30T22:02:22Z"
+			},
+			"cm_created": {
+				"value": "2019-04-29T16:20:55Z"
+			},
+			"cm_name": {
+				"value": "France, Bank of France"
+			},
+			"ta_displayName": {
+				"value": "Bank of France"
+			},
+			"cm_title": {
+				"atts": {
+					"rich-text": "true"
+				},
+				"rich-text-value": "<p>Bank of France</p>"
+			},
+			"cm_creator": {
+				"value": "jaugst"
+			},
+			"cm_modifier": {
+				"value": "zacharya"
+			},
+			"cm_description": {
+				"value": "Official for Banque de France"
+			},
+			"td_shortName": {
+				"value": "Bank of France"
+			},
+			"ta_websites": {
+				"values": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/47d3c119-9c39-4971-afa3-8c4184a27451"
+					},
+					"value": "https://www.banque-france.fr/"
+				}]
+			},
+			"ta_phones": {
+				"values": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/e2fee372-fe66-4469-892c-0d18f08e6993"
+					},
+					"value": "(33-1) 42-92-42-92"
+				}]
+			},
+			"ta_emails": {
+				"values": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/83a294bf-93b7-47fd-8532-c9f19a711e8f"
+					},
+					"value": "infos@banque-france.fr"
+				}]
+			},
+			"ta_faxes": {
+				"values": [{
+					"atts": {
+						"iri": "http://taxnotes.com/property/iri/e2490e34-3618-4659-a0ad-717c3178e1c7"
+					},
+					"value": "(33-1) 42-92-39-40"
+				}]
+			},
+			"ta_orgType": {
+				"values": [{
+					"value": "Government agency"
+				}, {
+					"value": "Financial institution"
+				}]
+			},
+			"ta_jurisdictions": {
+				"values": [{
+					"value": "France"
+				}]
+			},
+			"ta_nameVariants": {
+				"values": [{
+					"value": "Banque de France"
+				}, {
+					"value": "Bank of France"
+				}]
+			},
+			"ta_otherIris": {
+				"values": [{
+					"value": "https://en.wikipedia.org/wiki/Bank_of_France"
+				}]
+			},
+			"ta_productType": {
+				"values": [{
+					"value": "Tax Directory"
+				}]
+			},
+			"ta_drupalProductSection": {
+				"values": [{
+					"value": "Government"
+				}]
+			},
+			"ta_suppressOnWeb": {
+				"value": "false"
+			}
+		}
+	}
 }
 
 let jsonString = JSON.stringify(jsonObject);
