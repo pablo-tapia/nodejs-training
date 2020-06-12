@@ -165,169 +165,366 @@ let organizationParser = async (json) => {
 }
 
 let jsonObject = {
-	"rid": "29fc7",
+	"rid": "2b2jt",
 	"entity": {
-		"rid": "29fc7",
-		"type": "OrganizationType",
-		"AlfrescoNodeRef": "workspace://SpacesStore/0a2405b5-de98-43b0-9d68-efbd7cd2b9ad",
-		"triples": [{
-			"subject": "http://ixxus.com/model/source-id#workspace://SpacesStore/0a2405b5-de98-43b0-9d68-efbd7cd2b9ad",
-			"predicate": "http://taxnotes.com/model/entities/markedForDeletion",
-			"object": {
-				"datatype": "string",
-				"value": "false"
-			}
-		}],
-		"catchAll": "<tdcompany xmlns:taf=\"http://taxnotes.com/files#\" xmlns:ta=\"http://www.ixxus.co.uk/model/ta-cms/1.0\" xmlns:tap=\"http://www.ixxus.co.uk/model/ta-pubpipeline/1.0\" xmlns:tar=\"http://www.ixxus.co.uk/model/ta-resolver/1.0\" xmlns:app=\"http://www.alfresco.org/model/application/1.0\" xmlns:cm=\"http://www.alfresco.org/model/content/1.0\" xmlns:sys=\"http://www.alfresco.org/model/system/1.0\" xmlns:tan=\"http://www.taxnotes.com/model/ta-cms/1.0\" xmlns:td=\"http://www.taxnotes.com/model/tax-directory\">\n  <opt_num_01>8180E</opt_num_01>\n  <pub_code>GOV</pub_code>\n  <co_code>365905</co_code>\n  <br_code>0000</br_code>\n  <print_ordr>0</print_ordr>\n  <sect_fathr>8180</sect_fathr>\n  <co_name>Bank of France</co_name>\n</tdcompany>",
-		"addresses": [{
-			"atts": {
-				"iri": "http://taxnotes.com/property/iri/d1e0aba8-23a0-4733-9a4a-5974a70f196e"
-			},
-			"ta_street": ["31 rue Croix des Petits Champs"],
-			"ta_city": "Paris",
-			"ta_postalCode": "75001",
-			"ta_country": "France"
-		}],
-		"positions": [{
-			"atts": {
-				"iri": "http://taxnotes.com/property/iri/17f368c0-8cb2-4c52-abaa-13831ce6a581"
-			},
-			"ta_person": {
+	   "rid": "2b2jt",
+	   "type": "OrganizationType",
+	   "AlfrescoNodeRef": "workspace://SpacesStore/a589dd7e-1b82-4d61-ab4f-b18993156b33",
+	   "triples": [{
+		  "subject": "http://ixxus.com/model/source-id#workspace://SpacesStore/a589dd7e-1b82-4d61-ab4f-b18993156b33",
+		  "predicate": "http://taxnotes.com/model/entities/markedForDeletion",
+		  "object": {
+			 "datatype": "string",
+			 "value": "false"
+		  }
+	   }],
+	   "catchAll": "\n                    \n<tdcompany xmlns:cm=\"http://www.alfresco.org/model/content/1.0\" xmlns:sys=\"http://www.alfresco.org/model/system/1.0\" xmlns:ta=\"http://www.ixxus.co.uk/model/ta-cms/1.0\" xmlns:tap=\"http://www.ixxus.co.uk/model/ta-pubpipeline/1.0\" xmlns:taf=\"http://taxnotes.com/files#\" xmlns:tar=\"http://www.ixxus.co.uk/model/ta-resolver/1.0\" xmlns:app=\"http://www.alfresco.org/model/application/1.0\" xmlns:td=\"http://www.taxnotes.com/model/tax-directory\">\n  <pub_code>CTM</pub_code>\n  <co_code>370730</co_code>\n  <br_code>0000</br_code>\n  <print_ordr>0</print_ordr>\n  <co_name>Masco Corp.</co_name>\n</tdcompany>\n\n                ",
+	   "addresses": [{
+		  "atts": {
+			 "iri": "http://taxnotes.com/property/iri/9584b035-fd2e-46b6-aa2f-63de57180598"
+		  },
+		  "ta_street": ["17450 College Pkwy."],
+		  "ta_city": "Livonia",
+		  "ta_state": "MI",
+		  "ta_postalCode": "48152"
+	   }],
+	   "positions": [{
+		  "atts": {
+			 "iri": "http://taxnotes.com/property/iri/a278f04c-93dc-496e-bead-c7c4cee6f086"
+		  },
+		  "ta_person": {
+			 "atts": {
+				"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/0cf96d6d-e185-479b-b38e-78ee8b2680b7"
+			 },
+			 "value": "Sznewajs, John"
+		  },
+		  "ta_positionTitle": {
+			 "value": "Vice President & Chief Financial Officer"
+		  },
+		  "td_positionTitleAbbrev": {
+			 "value": "VP & CFO"
+		  },
+		  "ta_emails": {
+			 "values": [{
 				"atts": {
-					"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/3e88fe1b-6f7d-47c6-86f9-a7283d294df2"
+				   "iri": "http://taxnotes.com/property/iri/e1fd704d-b3dc-45d4-a08a-93c8191db452"
 				},
-				"value": "de Galhau, François Villeroy"
-			},
-			"ta_positionTitle": {
-				"value": "Governor"
-			},
-			"td_positionTitleAbbrev": {
-				"value": "Governor"
-			},
-			"ta_phones": {
-				"values": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/622fca6c-962f-44e2-87be-0814d8d22a98"
-					},
-					"value": "(33-1) 42-92-39-08"
-				}]
-			},
-			"ta_address": [{
+				"value": "john.sznewajs@masco.com"
+			 }]
+		  },
+		  "ta_phones": {
+			 "values": [{
 				"atts": {
-					"iri": "http://taxnotes.com/property/iri/603fb84e-300a-4925-8a23-6ccceedd667a"
+				   "iri": "http://taxnotes.com/property/iri/14937fa0-b922-4084-a02e-52d6831b6dd8"
 				},
-				"ta_street": ["31 rue Croix des Petits Champs"],
-				"ta_city": "Paris",
-				"ta_postalCode": "75001",
-				"ta_country": "France"
-			}],
-			"ta_showOnWebInfoTab": {
-				"value": "true"
-			}
-		}],
-		"properties": {
-			"cm_modified": {
-				"value": "2020-01-30T22:02:22Z"
-			},
-			"cm_created": {
-				"value": "2019-04-29T16:20:55Z"
-			},
-			"cm_name": {
-				"value": "France, Bank of France"
-			},
-			"ta_displayName": {
-				"value": "Bank of France"
-			},
-			"cm_title": {
+				"value": "(313) 274-7400"
+			 }]
+		  },
+		  "ta_faxes": {
+			 "values": [{
 				"atts": {
-					"rich-text": "true"
+				   "iri": "http://taxnotes.com/property/iri/f7cfef46-ea1f-46eb-a97c-04627dcf684a"
 				},
-				"rich-text-value": "<p>Bank of France</p>"
-			},
-			"cm_creator": {
-				"value": "jaugst"
-			},
-			"cm_modifier": {
-				"value": "zacharya"
-			},
-			"cm_description": {
-				"value": "Official for Banque de France"
-			},
-			"td_shortName": {
-				"value": "Bank of France"
-			},
-			"ta_websites": {
-				"values": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/47d3c119-9c39-4971-afa3-8c4184a27451"
-					},
-					"value": "https://www.banque-france.fr/"
-				}]
-			},
-			"ta_phones": {
-				"values": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/e2fee372-fe66-4469-892c-0d18f08e6993"
-					},
-					"value": "(33-1) 42-92-42-92"
-				}]
-			},
-			"ta_emails": {
-				"values": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/83a294bf-93b7-47fd-8532-c9f19a711e8f"
-					},
-					"value": "infos@banque-france.fr"
-				}]
-			},
-			"ta_faxes": {
-				"values": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/e2490e34-3618-4659-a0ad-717c3178e1c7"
-					},
-					"value": "(33-1) 42-92-39-40"
-				}]
-			},
-			"ta_orgType": {
-				"values": [{
-					"value": "Government agency"
-				}, {
-					"value": "Financial institution"
-				}]
-			},
-			"ta_jurisdictions": {
-				"values": [{
-					"value": "France"
-				}]
-			},
-			"ta_nameVariants": {
-				"values": [{
-					"value": "Banque de France"
-				}, {
-					"value": "Bank of France"
-				}]
-			},
-			"ta_otherIris": {
-				"values": [{
-					"value": "https://en.wikipedia.org/wiki/Bank_of_France"
-				}]
-			},
-			"ta_productType": {
-				"values": [{
-					"value": "Tax Directory"
-				}]
-			},
-			"ta_drupalProductSection": {
-				"values": [{
-					"value": "Government"
-				}]
-			},
-			"ta_suppressOnWeb": {
-				"value": "false"
-			}
-		}
+				"value": "(313) 792-4177"
+			 }]
+		  },
+		  "ta_address": [{
+			 "atts": {
+				"iri": "http://taxnotes.com/property/iri/08b59c73-9fc8-4a34-9d9e-411a784f3870"
+			 },
+			 "ta_street": ["17450 College Pkwy."],
+			 "ta_city": "Livonia",
+			 "ta_state": "MI",
+			 "ta_postalCode": "48152"
+		  }],
+		  "ta_showOnWebInfoTab": {
+			 "value": "true"
+		  }
+	   }, {
+		  "atts": {
+			 "iri": "http://taxnotes.com/property/iri/2e40f6d2-10ee-4e7e-b606-9724aa80963f"
+		  },
+		  "ta_person": {
+			 "atts": {
+				"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/227e8e00-f211-4c46-8c07-3c455f2f4b15"
+			 },
+			 "value": "Leaman, Larry"
+		  },
+		  "ta_positionTitle": {
+			 "value": "Vice President--Global Taxes"
+		  },
+		  "td_positionTitleAbbrev": {
+			 "value": "Vice President--Global Taxes"
+		  },
+		  "ta_phones": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/647d83d9-a431-40b7-b58a-7f19fa8f732c"
+				},
+				"value": "(313) 274-7400"
+			 }]
+		  },
+		  "ta_faxes": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/97c037b3-b799-4d86-b7db-27d3c22e58fa"
+				},
+				"value": "(313) 792-4177"
+			 }]
+		  },
+		  "ta_address": [{
+			 "atts": {
+				"iri": "http://taxnotes.com/property/iri/43f4a63f-68a4-43ab-87fb-c51805d5c017"
+			 },
+			 "ta_street": ["17450 College Pkwy."],
+			 "ta_city": "Livonia",
+			 "ta_state": "MI",
+			 "ta_postalCode": "48152"
+		  }],
+		  "ta_showOnWebInfoTab": {
+			 "value": "true"
+		  }
+	   }, {
+		  "atts": {
+			 "iri": "http://taxnotes.com/property/iri/8569129f-93e0-42ca-8181-b68e265e7b29"
+		  },
+		  "ta_person": {
+			 "atts": {
+				"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/d65188fa-fee0-4032-8044-b883f4f946b6"
+			 },
+			 "value": "Deschamps, David"
+		  },
+		  "ta_positionTitle": {
+			 "value": "Director--International Taxes"
+		  },
+		  "td_positionTitleAbbrev": {
+			 "value": "Director--International Taxes"
+		  },
+		  "ta_phones": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/7105d7d2-f880-4207-8a4f-f9fb428e4906"
+				},
+				"value": "(313) 274-7400"
+			 }]
+		  },
+		  "ta_faxes": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/e0155021-5ad1-4f7a-9b24-e1bd351b8794"
+				},
+				"value": "(313) 792-4177"
+			 }]
+		  },
+		  "ta_address": [{
+			 "atts": {
+				"iri": "http://taxnotes.com/property/iri/812aa92a-3e3c-44a3-87ed-d9c01f521cdc"
+			 },
+			 "ta_street": ["17450 College Pkwy."],
+			 "ta_city": "Livonia",
+			 "ta_state": "MI",
+			 "ta_postalCode": "48152"
+		  }],
+		  "ta_showOnWebInfoTab": {
+			 "value": "true"
+		  }
+	   }, {
+		  "atts": {
+			 "iri": "http://taxnotes.com/property/iri/77017077-bac6-4a63-8621-37cc0d46fa08"
+		  },
+		  "ta_person": {
+			 "atts": {
+				"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/051de777-34c6-48be-9b5f-dfe5e2faad7e"
+			 },
+			 "value": "Molesky, Diane"
+		  },
+		  "ta_positionTitle": {
+			 "value": "Director--Tax Planning & Administration"
+		  },
+		  "td_positionTitleAbbrev": {
+			 "value": "Director--Tax Plan & Admin"
+		  },
+		  "ta_phones": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/f32fe58a-44dd-4257-aeda-b6493f13425b"
+				},
+				"value": "(313) 274-7400"
+			 }]
+		  },
+		  "ta_faxes": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/e72dea4f-1a1f-40e5-bc11-96128fb55c30"
+				},
+				"value": "(313) 792-4177"
+			 }]
+		  },
+		  "ta_address": [{
+			 "atts": {
+				"iri": "http://taxnotes.com/property/iri/ca7bdee9-0d5b-4197-a5e5-17b7d4d3880e"
+			 },
+			 "ta_street": ["17450 College Pkwy."],
+			 "ta_city": "Livonia",
+			 "ta_state": "MI",
+			 "ta_postalCode": "48152"
+		  }],
+		  "ta_showOnWebInfoTab": {
+			 "value": "true"
+		  }
+	   }, {
+		  "atts": {
+			 "iri": "http://taxnotes.com/property/iri/f4cc9619-2219-49b4-8a8c-47dc288766c6"
+		  },
+		  "ta_person": {
+			 "atts": {
+				"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/54250d70-cf5d-475b-a7db-e90f8fe50883"
+			 },
+			 "value": "Thornton, Jared"
+		  },
+		  "ta_positionTitle": {
+			 "value": "Manager--Tax Accounting & Federal Tax Compliance"
+		  },
+		  "td_positionTitleAbbrev": {
+			 "value": "Manager--Tax Acctg & Federal T"
+		  },
+		  "ta_phones": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/db880bf4-c6b3-4885-942e-ee68da0cf521"
+				},
+				"value": "(313) 274-7400"
+			 }]
+		  },
+		  "ta_faxes": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/7a504166-d630-4f1b-b4db-120320a4c48e"
+				},
+				"value": "(313) 792-4177"
+			 }]
+		  },
+		  "ta_address": [{
+			 "atts": {
+				"iri": "http://taxnotes.com/property/iri/a7a96064-989f-4e7a-9779-c0b4e32db49e"
+			 },
+			 "ta_street": ["17450 College Pkwy."],
+			 "ta_city": "Livonia",
+			 "ta_state": "MI",
+			 "ta_postalCode": "48152"
+		  }],
+		  "ta_showOnWebInfoTab": {
+			 "value": "true"
+		  }
+	   }],
+	   "properties": {
+		  "cm_created": {
+			 "value": "2019-10-28T17:26:27Z"
+		  },
+		  "cm_modified": {
+			 "value": "2019-10-28T17:26:27Z"
+		  },
+		  "cm_name": {
+			 "value": "Masco Corp."
+		  },
+		  "cm_description": {
+			 "value": "OFFICIAL"
+		  },
+		  "cm_title": {
+			 "atts": {
+				"rich-text": "true"
+			 },
+			 "rich-text-value": "\n                    \n<p>Masco Corp.</p>\n\n                "
+		  },
+		  "cm_creator": {
+			 "value": "zacharya"
+		  },
+		  "cm_modifier": {
+			 "value": "zacharya"
+		  },
+		  "ta_displayName": {
+			 "value": "Masco Corp."
+		  },
+		  "ta_suppressOnWeb": {
+			 "value": "false"
+		  },
+		  "td_shortName": {
+			 "value": "Masco Corp."
+		  },
+		  "ta_websites": {
+			 "values": [{
+				"atts": {
+				   "iri": "http://taxnotes.com/property/iri/4f7afcf0-e6e2-4095-af8d-31208ddb7007"
+				},
+				"value": "http://www.masco.com"
+			 }, {
+				"atts": {
+				   "iri": "workspace://SpacesStore/df9048dd-1cc8-4e48-bd44-8639b7d78f43"
+				},
+				"value": "http://masco.com/"
+			 }]
+		  },
+		  "ta_phones": {
+			 "values": [{
+				"atts": {
+				   "type": "Toll-Free",
+				   "iri": "http://taxnotes.com/property/iri/d29903fd-65be-4183-a110-b8af311e6f48"
+				},
+				"value": "(888) 627-6397"
+			 }]
+		  },
+		  "ta_assets": {
+			 "value": "5390000000"
+		  },
+		  "ta_annualRevenue": {
+			 "value": "8360000000"
+		  },
+		  "ta_orgFYEnd": {
+			 "value": "12/31/2018"
+		  },
+		  "ta_orgEmployeesHigh": {
+			 "value": "26000"
+		  },
+		  "ta_orgEmployeesLow": {
+			 "value": "26000"
+		  },
+		  "ta_sicClass": {
+			 "value": "(2434) Wood Kitchen Cabinets"
+		  },
+		  "ta_jurisdictions": {
+			 "values": [{
+				"value": "United States"
+			 }]
+		  },
+		  "ta_productType": {
+			 "values": [{
+				"value": "Tax Directory"
+			 }]
+		  },
+		  "ta_drupalProductSection": {
+			 "values": [{
+				"value": "Businesses"
+			 }]
+		  },
+		  "ta_orgType": {
+			 "values": [{
+				"value": "Corporation"
+			 }, {
+				"value": "Public"
+			 }, {
+				"value": "Fortune 500"
+			 }]
+		  },
+		  "ta_nameVariants": {
+			 "values": [{
+				"value": "Masco"
+			 }, {
+				"value": "Masco Corporation"
+			 }]
+		  }
+	   }
 	}
-}
+ }
 
 let jsonString = JSON.stringify(jsonObject);
 

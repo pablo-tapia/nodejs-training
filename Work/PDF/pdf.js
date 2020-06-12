@@ -392,7 +392,7 @@ module.exports = {
 				});
 
 				let text = (information === 'organization_description' || information === 'organization_background')
-					? striptags(json.org.other_information[information])
+					? striptags(json.org.other_information[information], [], ' ').replace('\n', '')
 					: json.org.other_information[information];
 
 				page.drawText(text, {
@@ -413,17 +413,26 @@ module.exports = {
 		});
 
 		if (isNotEmpty('organization_personnel', json.org)) {
-			page.drawText('Organization Personnel ', {
+			// Let's check we still have enough space to put the staff data
+			let pageForPersonnel = page;
+			let heightForPersonnel = height;
+			let createANewPage = false;
+
+			if (height <= 120) {
+				pageForPersonnel = pdf.addPage();
+				heightForPersonnel = pageForPersonnel.getSize().height;
+				createANewPage = true;
+			} // end if
+
+			pageForPersonnel.drawText('Organization Personnel ', {
 				x: textPositionLeft,
-				y: height = height - sectionBreakline,
+				y: createANewPage !== true
+					? heightForPersonnel = heightForPersonnel - sectionBreakline
+					: heightForPersonnel = heightForPersonnel - standardBreakline,
 				size: fontSectionSize,
 				font: fontBold,
 				color: fontColor
 			});
-
-			// Let's check we still have enough space to put the staff data
-			let pageForPersonnel = height <= 120 ? pdf.addPage() : page;
-			let heightForPersonnel = height;
 
 			// Let's divide the staff into chunks we can display side to side
 			let staffMembers = [];
@@ -436,7 +445,7 @@ module.exports = {
 				// If there's more than 2 staff members, it's safe to assume we need a new page
 				// We're also assuming we only need to do this one time, since most examples have
 				// 2 -5 staff members, if the number is higher we need to update this
-				if (staffIndex === 1) {
+				if (staffIndex === 1 && !createANewPage)  {
 					pageForPersonnel = pdf.addPage();
 					heightForPersonnel = pageForPersonnel.getSize().height;
 				} // end if
@@ -451,23 +460,27 @@ module.exports = {
 				let heightForAddress = [0, 0];
 
 				for (let [index, staff] of staffChunks.entries()) {
-					pageForPersonnel.drawText(staff.ta_person.value, {
-						x: index > 0 ? textPositionRight : textPositionLeft,
-						y: index > 0 ? heightForName : heightForPersonnel = heightForPersonnel - standardBreakline,
-						size: fontRegularSize,
-						font: font,
-						color: fontColor
-					});
+					if (staff.hasOwnProperty('ta_person')) {
+						pageForPersonnel.drawText(staff.ta_person.value, {
+							x: index > 0 ? textPositionRight : textPositionLeft,
+							y: index > 0 ? heightForName : heightForPersonnel = heightForPersonnel - standardBreakline,
+							size: fontRegularSize,
+							font: font,
+							color: fontColor
+						});
+					} // end if
 
 					heightForName = heightForPersonnel;
 
-					pageForPersonnel.drawText(staff.td_positionTitleAbbrev, {
-						x: index > 0 ? textPositionRight : textPositionLeft,
-						y: index > 0 ? heightForPosition : heightForPersonnel = heightForPersonnel - propertiesBreakline,
-						size: fontRegularSize,
-						font: font,
-						color: fontColor
-					});
+					if (staff.hasOwnProperty('td_positionTitleAbbrev')) {
+						pageForPersonnel.drawText(staff.td_positionTitleAbbrev, {
+							x: index > 0 ? textPositionRight : textPositionLeft,
+							y: index > 0 ? heightForPosition : heightForPersonnel = heightForPersonnel - propertiesBreakline,
+							size: fontRegularSize,
+							font: font,
+							color: fontColor
+						});
+					} // end if
 
 					heightForPosition = heightForPersonnel;
 
