@@ -14,7 +14,7 @@ let createPdfFrom = async (body) => {
         throw { 'code': 400, 'message': `Malformed request. ${error.message}`};
     } // end try - catch
 
-	let cover = main.coverText;
+	let cover = main.coverText || null;
     let survey = main.survey;
 
     if (!survey.hasOwnProperty('org')) {
@@ -32,212 +32,174 @@ let createPdfFrom = async (body) => {
 };
 
 let surveyObject = {
-	"coverText": "<p>Hello</p>",
 	"survey": {
-		"contactName": null,
-		"contactEmail": "scott@avengers.com",
-		"contactFax": "2029031222",
-		"notes": null,
+		"contactName": "Lin",
+		"contactMethod": "email",
+		"contactEmail": "lin.li@taxanalysts.org",
+		"contactFax": "123456789",
+		"orgRidRef": "3578g",
 		"org": {
-			"rid": "2b2jt",
-			"organization_name": "Masco Corp.",
+			"rid": "3578g",
+			"organization_name": "Test organization",
 			"addresses": [{
 				"atts": {
-					"iri": "http://taxnotes.com/property/iri/9584b035-fd2e-46b6-aa2f-63de57180598"
+					"iri": "workspace://SpacesStore/b9ab4351-ae53-42b3-b7d8-a629d25e5f18",
+					"type": "Mailing"
 				},
-				"ta_street": ["17450 College Pkwy."],
-				"ta_city": "Livonia",
-				"ta_state": "MI",
-				"ta_postalCode": "48152"
+				"ta_street": ["first 400 South Maple Avenue ", "second line"],
+				"ta_city": "Falls Church",
+				"ta_state": "VIRGINIA",
+				"ta_postalCode": "22046"
+			}, {
+				"atts": {
+					"label": "Address label 2",
+					"iri": "workspace://SpacesStore/3a3dd60c-fe23-4f85-8ed8-4b70ca7dca72"
+				},
+				"ta_street": ["test1 400 South Maple Avenue 2", "test 2 address"],
+				"ta_city": "Falls Church",
+				"ta_state": "VIRGINIA",
+				"ta_postalCode": "22046"
+			}, {
+				"atts": {
+					"iri": "workspace://SpacesStore/f250d265-424f-482b-af16-bd383dd8ed98"
+				},
+				"ta_street": ["400 South Maple Avenue 3", "street test second line"],
+				"ta_city": "Falls Church",
+				"ta_state": "VIRGINIA",
+				"ta_postalCode": "22046"
 			}],
 			"other_information": {
-				"assets": "5390000000",
-				"annual_revenue": "8360000000",
-				"fiscal_year_end": "12/31/2018",
-				"number_of_employees": "26000",
-				"SIC_classification": "(2434) Wood Kitchen Cabinets"
+				"number_of_employees": "444",
+				"SIC_classification": "abc",
+				"irs_office_code": "ABC",
+				"fiscal_year_end": "0620",
+				"assets": "232890000000d",
+				"annual_revenue": "232890000000",
+				"organization_description": "<p>This is the Description</p>\n<p>for the </p>\n<p>org</p>",
+				"organization_background": "<p>This is the background for the org</p>"
 			},
 			"phones": [{
 				"atts": {
-					"type": "Toll-Free",
-					"iri": "http://taxnotes.com/property/iri/d29903fd-65be-4183-a110-b8af311e6f48"
+					"iri": "workspace://SpacesStore/5ba87980-e537-4267-b346-93a3cbeb658a",
+					"type": "Toll-Free"
 				},
-				"value": "(888) 627-6397"
-			}],
-			"faxes": {},
-			"emails": {},
-			"websites": [{
-				"atts": {
-					"iri": "http://taxnotes.com/property/iri/4f7afcf0-e6e2-4095-af8d-31208ddb7007"
-				},
-				"value": "http://www.masco.com"
+				"value": "1111111111111"
 			}, {
 				"atts": {
-					"iri": "workspace://SpacesStore/df9048dd-1cc8-4e48-bd44-8639b7d78f43"
+					"label": "Phone label 1",
+					"iri": "workspace://SpacesStore/f34b74bd-50ad-401f-90f2-983519ee7db8"
 				},
-				"value": "http://masco.com/"
+				"value": "222222222222"
+			}],
+			"faxes": [{
+				"atts": {
+					"label": "Fax label 1",
+					"iri": "workspace://SpacesStore/e86004c9-3221-437c-8149-2f10944eff7f",
+					"type": "1111111111"
+				},
+				"value": "111111111"
+			}, {
+				"atts": {
+					"iri": "workspace://SpacesStore/8db3693c-974a-4cf0-98e7-7dda0a4038e4",
+					"type": "3333333333"
+				},
+				"value": "333333"
+			}],
+			"emails": [{
+				"atts": {
+					"label": "Email label 1",
+					"iri": "workspace://SpacesStore/94ed94c3-ca72-40a1-8e58-374e2b0351f4",
+					"type": "personal 22222222222"
+				},
+				"value": "test2@test.org"
+			}, {
+				"atts": {
+					"iri": "workspace://SpacesStore/12c81d0d-6010-477e-9cc4-fb8ad8f0a36c",
+					"type": "personal 3333333333"
+				},
+				"value": "test3@test.org"
+			}],
+			"websites": [{
+				"atts": {
+					"iri": "workspace://SpacesStore/f5968322-c5be-4271-9b7f-cba8f811f2c7",
+					"type": "33333333333"
+				},
+				"value": "http://test3.org"
+			}, {
+				"atts": {
+					"type": "4444444444444444",
+					"iri": "workspace://SpacesStore/15d280fb-ca69-4aa5-b72a-4de1357948eb"
+				},
+				"value": ""
 			}],
 			"organization_personnel": [{
 				"ta_person": {
 					"atts": {
-						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/0cf96d6d-e185-479b-b38e-78ee8b2680b7"
+						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/3174b10a-4171-4d0a-9814-4ea7603b992e"
 					},
-					"value": "Sznewajs, John"
+					"value": "Lin Li cm:name"
 				},
-				"ta_positionTitle": "Vice President & Chief Financial Officer",
-				"td_positionTitleAbbrev": "VP & CFO",
+				"ta_positionTitle": "Test",
+				"ta_address": [{
+					"atts": {
+						"iri": "workspace://SpacesStore/c94d21b6-b01b-4bfa-9898-73adca831d60"
+					},
+					"ta_city": "new york city",
+					"ta_state": "fdsa",
+					"ta_postalCode": "22046",
+					"ta_street": ["400 S str (first line)", "second line"]
+				}],
+				"td_positionTitleAbbrev": "Test",
+				"ta_showOnWebInfoTab": "true",
+				"td_positionUnit": "Position Unit test",
+				"ta_positionLocation": "position location test",
+				"ta_phones": [{
+					"atts": {
+						"iri": "workspace://SpacesStore/56ad9d62-1b96-478d-9f4b-5cc66a3df664"
+					},
+					"value": "2222222 position hone"
+				}, {
+					"atts": {
+						"iri": "workspace://SpacesStore/4b5008a8-2481-428e-a3bd-c83ec5db6772"
+					},
+					"value": "3333333 position hone"
+				}],
+				"ta_faxes": [{
+					"atts": {
+						"iri": "workspace://SpacesStore/07753ebe-ce2f-4863-86b4-3ed884138088"
+					},
+					"value": "1111111 position fax"
+				}, {
+					"atts": {
+						"iri": "workspace://SpacesStore/b938cc82-f05e-4c86-a05b-1561724999ac"
+					},
+					"value": "2222 position fax"
+				}],
 				"ta_emails": [{
 					"atts": {
-						"iri": "http://taxnotes.com/property/iri/e1fd704d-b3dc-45d4-a08a-93c8191db452"
+						"iri": "workspace://SpacesStore/f06320a7-610b-4f83-b598-df05cc884f82"
 					},
-					"value": "john.sznewajs@masco.com"
-				}],
-				"ta_phones": [{
+					"value": "rwdhd@gmail.com"
+				}, {
 					"atts": {
-						"iri": "http://taxnotes.com/property/iri/14937fa0-b922-4084-a02e-52d6831b6dd8"
+						"iri": "workspace://SpacesStore/5a111905-1451-4710-bca4-0daf57b9e6be"
 					},
-					"value": "(313) 274-7400"
-				}],
-				"ta_faxes": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/f7cfef46-ea1f-46eb-a97c-04627dcf684a"
-					},
-					"value": "(313) 792-4177"
-				}],
-				"ta_address": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/08b59c73-9fc8-4a34-9d9e-411a784f3870"
-					},
-					"ta_street": ["17450 College Pkwy."],
-					"ta_city": "Livonia",
-					"ta_state": "MI",
-					"ta_postalCode": "48152"
-				}],
-				"ta_showOnWebInfoTab": "true"
+					"value": "adhgaj@test.com"
+				}]
 			}, {
+				"ta_showOnWebInfoTab": "true",
+				"ta_positionTitle": "Vacant tada",
+				"ta_vacant": "Vacant name"
+			}, {
+				"ta_showOnWebInfoTab": "false",
 				"ta_person": {
 					"atts": {
-						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/227e8e00-f211-4c46-8c07-3c455f2f4b15"
+						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/3174b10a-4171-4d0a-9814-4ea7603b992e"
 					},
-					"value": "Leaman, Larry"
+					"value": "Lin Li cm:name"
 				},
-				"ta_positionTitle": "Vice President--Global Taxes",
-				"td_positionTitleAbbrev": "Vice President--Global Taxes",
-				"ta_phones": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/647d83d9-a431-40b7-b58a-7f19fa8f732c"
-					},
-					"value": "(313) 274-7400"
-				}],
-				"ta_faxes": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/97c037b3-b799-4d86-b7db-27d3c22e58fa"
-					},
-					"value": "(313) 792-4177"
-				}],
-				"ta_address": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/43f4a63f-68a4-43ab-87fb-c51805d5c017"
-					},
-					"ta_street": ["17450 College Pkwy."],
-					"ta_city": "Livonia",
-					"ta_state": "MI",
-					"ta_postalCode": "48152"
-				}],
-				"ta_showOnWebInfoTab": "true"
-			}, {
-				"ta_person": {
-					"atts": {
-						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/d65188fa-fee0-4032-8044-b883f4f946b6"
-					},
-					"value": "Deschamps, David"
-				},
-				"ta_positionTitle": "Director--International Taxes",
-				"td_positionTitleAbbrev": "Director--International Taxes",
-				"ta_phones": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/7105d7d2-f880-4207-8a4f-f9fb428e4906"
-					},
-					"value": "(313) 274-7400"
-				}],
-				"ta_faxes": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/e0155021-5ad1-4f7a-9b24-e1bd351b8794"
-					},
-					"value": "(313) 792-4177"
-				}],
-				"ta_address": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/812aa92a-3e3c-44a3-87ed-d9c01f521cdc"
-					},
-					"ta_street": ["17450 College Pkwy."],
-					"ta_city": "Livonia",
-					"ta_state": "MI",
-					"ta_postalCode": "48152"
-				}],
-				"ta_showOnWebInfoTab": "true"
-			}, {
-				"ta_person": {
-					"atts": {
-						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/051de777-34c6-48be-9b5f-dfe5e2faad7e"
-					},
-					"value": "Molesky, Diane"
-				},
-				"ta_positionTitle": "Director--Tax Planning & Administration",
-				"td_positionTitleAbbrev": "Director--Tax Plan & Admin",
-				"ta_phones": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/f32fe58a-44dd-4257-aeda-b6493f13425b"
-					},
-					"value": "(313) 274-7400"
-				}],
-				"ta_faxes": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/e72dea4f-1a1f-40e5-bc11-96128fb55c30"
-					},
-					"value": "(313) 792-4177"
-				}],
-				"ta_address": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/ca7bdee9-0d5b-4197-a5e5-17b7d4d3880e"
-					},
-					"ta_street": ["17450 College Pkwy."],
-					"ta_city": "Livonia",
-					"ta_state": "MI",
-					"ta_postalCode": "48152"
-				}],
-				"ta_showOnWebInfoTab": "true"
-			}, {
-				"ta_person": {
-					"atts": {
-						"iri-ref": "http://ixxus.com/model/source-id#workspace://SpacesStore/54250d70-cf5d-475b-a7db-e90f8fe50883"
-					},
-					"value": "Thornton, Jared"
-				},
-				"ta_positionTitle": "Manager--Tax Accounting & Federal Tax Compliance",
-				"td_positionTitleAbbrev": "Manager--Tax Acctg & Federal T",
-				"ta_phones": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/db880bf4-c6b3-4885-942e-ee68da0cf521"
-					},
-					"value": "(313) 274-7400"
-				}],
-				"ta_faxes": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/7a504166-d630-4f1b-b4db-120320a4c48e"
-					},
-					"value": "(313) 792-4177"
-				}],
-				"ta_address": [{
-					"atts": {
-						"iri": "http://taxnotes.com/property/iri/a7a96064-989f-4e7a-9779-c0b4e32db49e"
-					},
-					"ta_street": ["17450 College Pkwy."],
-					"ta_city": "Livonia",
-					"ta_state": "MI",
-					"ta_postalCode": "48152"
-				}],
-				"ta_showOnWebInfoTab": "true"
+				"ta_positionTitle": "Test title with abbreviation",
+				"td_positionTitleAbbrev": "ttwa"
 			}]
 		}
 	}

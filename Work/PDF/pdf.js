@@ -472,8 +472,9 @@ module.exports = {
 
 					heightForName = heightForPersonnel;
 
-					if (staff.hasOwnProperty('td_positionTitleAbbrev')) {
-						pageForPersonnel.drawText(staff.td_positionTitleAbbrev, {
+					if (staff.hasOwnProperty('td_positionTitleAbbrev') || staff.hasOwnProperty('ta_positionTitle')) {
+						let staffPosition = staff.td_positionTitleAbbrev || staff.ta_positionTitle;
+						pageForPersonnel.drawText(staffPosition, {
 							x: index > 0 ? textPositionRight : textPositionLeft,
 							y: index > 0 ? heightForPosition : heightForPersonnel = heightForPersonnel - propertiesBreakline,
 							size: fontRegularSize,

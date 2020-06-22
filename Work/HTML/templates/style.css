@@ -1,0 +1,67 @@
+html, body, ul, ol {
+  margin: 0px;
+  padding: 0px;
+}
+
+* {
+  font-family: Roboto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  background: #efefef;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 500px;
+}
+
+.box-diff {
+  width: auto;
+}
+
+.card-diff {
+  display: inline-block;
+  border: 1px solid lightgray;
+  border-radius: 3px; 
+  background: white;
+  padding: 20px;
+  width: 600px;
+}
+
+.container {
+  height: 540px;
+  overflow-y: scroll;
+}
+
+.card {
+  border: 1px solid lightgray;
+  border-radius: 3px; 
+  text-align: center;
+  background: white;
+  padding: 20px;
+}
+
+.inputs {
+  padding: 10px;
+}
+
+.submit {
+  padding: 10px;
+}
+
+.submit input[type='submit'] {
+  color: #fff;
+  background-color: #0064a2;
+  border-color: #005589;
+}
